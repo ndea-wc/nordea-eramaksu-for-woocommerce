@@ -1,0 +1,387 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nordea Finance Erämaksu for WooCOmmerce\n"
+"POT-Creation-Date: 2024-12-09 20:45+0200\n"
+"PO-Revision-Date: 2024-12-09 20:47+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: nordea-eramaksu-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: assets/js/checkout.js:2
+msgid "nordea-eramaksu"
+msgstr "nordea-eramaksu"
+
+#: class-wc-payment-gateway-nordea.php:30
+msgid "Nordea Erämaksu"
+msgstr "Nordea Erämaksu"
+
+#: class-wc-payment-gateway-nordea.php:31
+msgid "Enable payments via Nordea Erämaksu"
+msgstr "Ota maksut käyttöön Nordea Erämaksun kautta"
+
+#: class-wc-payment-gateway-nordea.php:67
+msgid "Enable/Disable"
+msgstr "Päällä / Pois"
+
+#: class-wc-payment-gateway-nordea.php:69
+msgid "Enable Nordea Erämaksu"
+msgstr "Ota Nordea Erämaksu käyttöön"
+
+#: class-wc-payment-gateway-nordea.php:77
+msgid "Title"
+msgstr "Otsikko"
+
+#: class-wc-payment-gateway-nordea.php:83
+msgid "Description"
+msgstr "Kuvaus"
+
+#: class-wc-payment-gateway-nordea.php:89
+msgid "API Client ID"
+msgstr "API-asiakkaan tunnus (Client ID)"
+
+#: class-wc-payment-gateway-nordea.php:95
+msgid "API Client Secret"
+msgstr "API-asiakkaan salaisuus (Client Secret)"
+
+#: class-wc-payment-gateway-nordea.php:101
+msgid "Dealer ID"
+msgstr "Kauppiastunnus (Dealer ID)"
+
+#: class-wc-payment-gateway-nordea.php:107
+msgid "Order ID Prefix"
+msgstr "Tilaustunnuksen etuliite"
+
+#: class-wc-payment-gateway-nordea.php:125
+#: class-wc-payment-gateway-nordea.php:130
+#: class-wc-payment-gateway-nordea.php:134
+msgid "Payment error: Missing required gateway credentials."
+msgstr "Maksuvirhe: Vaaditut yhdyskäytävän tunnistetiedot puuttuvat."
+
+#: class-wc-payment-gateway-nordea.php:146
+#: nordea-eramaksu-for-woocommerce.php:551
+#, php-format
+msgid ""
+"Payment error: Total value for Nordea Erämaksu must be between %1$s€ and "
+"%2$s€."
+msgstr ""
+"Maksuvirhe: Nordea Erämaksun kokonaissumman on oltava välillä %1$s–%2$s "
+"euroa."
+
+#: class-wc-payment-gateway-nordea.php:161
+msgid "Nordea Finanace Erämaksu"
+msgstr "Nordea Finance Erämaksu"
+
+#: class-wc-payment-gateway-nordea.php:162
+msgid ""
+"Nordea Finance Erämaksu on vakuudeton määräaikainen kertaluotto, joka on "
+"tarkoitettu isompiin, 500 – 30 000 euron suuruisiin verkko-ostoksiin."
+msgstr ""
+"Nordea Finance Erämaksu on vakuudeton määräaikainen kertaluotto, joka on "
+"tarkoitettu isompiin, 500 – 30 000 euron suuruisiin verkko-ostoksiin."
+
+#: class-wc-payment-gateway-nordea.php:177
+msgid "Payment error: Missing required payment gateway credentials."
+msgstr "Maksuvirhe: Vaaditut yhdyskäytävän tunnistetiedot puuttuvat."
+
+#: class-wc-payment-gateway-nordea.php:264
+msgid ""
+"Payment error: Unable to connect to Nordea. Please check your credentials "
+"and try again."
+msgstr ""
+"Maksuvirhe: Nordeaan ei saada yhteyttä. Tarkista kirjautumistietosi ja yritä "
+"uudelleen."
+
+#: class-wc-payment-gateway-nordea.php:286
+msgid "Payment error: Application reference id or redirect url not returned."
+msgstr ""
+"Maksuvirhe: Hakemuksen viitetunnusta tai uudelleenohjauksen URL-osoitetta ei "
+"palutettu."
+
+#: class-wc-payment-gateway-nordea.php:297
+msgid "Payment error: Bad or invalid request"
+msgstr "Maksuvirhe: Virheellinen pyyntö"
+
+#: class-wc-payment-gateway-nordea.php:303
+msgid "Payment error: Invalid authentication headers"
+msgstr "Maksuvirhe: Virheelliset todennustiedot"
+
+#: class-wc-payment-gateway-nordea.php:309
+msgid "Payment error: Unauthorized or invalid dealer id"
+msgstr "Maksuvirhe: Virheellinen kauppiastunnus"
+
+#: class-wc-payment-gateway-nordea.php:315
+msgid "Payment error: Internal Server Error"
+msgstr "Maksuvirhe: Nordean sisäinen palvelinvirhe"
+
+#: class-wc-payment-gateway-nordea.php:321
+msgid "Payment error: Payment method unavailable"
+msgstr "Maksuvirhe: Maksutapa ei ole käytettävissä"
+
+#: class-wc-payment-gateway-nordea.php:327
+msgid "Payment error: Service unavailable"
+msgstr "Maksuvirhe: Palvelu ei ole käytettävissä"
+
+#: class-wc-payment-gateway-nordea.php:333
+msgid "Payment error: Unknown error"
+msgstr "Maksuvirhe: Tuntematon virhe"
+
+#: class-wc-payment-gateway-nordea.php:356
+msgid "Payment error: Nordea Erämaksu cannot be used for non EUR purchases."
+msgstr ""
+"Maksuvirhe: Nordea Erämaksua ei voi käyttää muihin kuin euromääräisiin "
+"ostoksiin."
+
+#: class-wc-payment-gateway-nordea.php:374
+msgid "Awaiting payment confirmation from Nordea."
+msgstr "Odottaa maksuvahvistusta Nordeasta."
+
+#: class-wc-payment-gateway-nordea.php:384
+msgid "Payment error: Please retry."
+msgstr "Maksuvirhe: Yritä uudelleen."
+
+#: class-wc-payment-gateway-nordea.php:411
+msgid "Payment application completed successfully. "
+msgstr "Rahoitushakemus suoritettu onnistuneesti. "
+
+#: class-wc-payment-gateway-nordea.php:416
+msgid "Payment application decision is pending. "
+msgstr "Rahoituspäätös on vireillä. "
+
+#: class-wc-payment-gateway-nordea.php:420
+msgid "Payment application was rejected by Nordea. "
+msgstr "Nordea hylkäsi rahoitushakemuksen. "
+
+#: class-wc-payment-gateway-nordea.php:424
+msgid "Payment application failed due to a technical issue with Nordea. "
+msgstr ""
+"Rahoitushakemus epäonnistui Nordean kanssa ilmenneen teknisen ongelman "
+"vuoksi. "
+
+#: class-wc-payment-gateway-nordea.php:428
+msgid "Payment application status "
+msgstr "Rahoitushakemuksen tila "
+
+#: class-wc-payment-gateway-nordea.php:458
+msgid "Payment verification error: Unable to verify payment"
+msgstr "Maksun vahvistusvirhe: Maksua ei voida vahvistaa"
+
+#: class-wc-payment-gateway-nordea.php:478
+msgid "Payment verification error: Bad or invalid request"
+msgstr "Maksun vahvistusvirhe: Virheellinen pyyntö"
+
+#: class-wc-payment-gateway-nordea.php:484
+msgid "Payment verification error: Invalid authentication headers"
+msgstr "Maksun vahvistusvirhe: Virheelliset todennustiedot"
+
+#: class-wc-payment-gateway-nordea.php:490
+msgid "Payment verification error: Unauthorized or invalid dealer id"
+msgstr "Maksun vahvistusvirhe: Virheellinen kauppiastunnus"
+
+#: class-wc-payment-gateway-nordea.php:496
+msgid "Payment verification error: Finance application not found"
+msgstr "Maksun vahvistusvirhe: Rahoitushakemusta ei löydy"
+
+#: class-wc-payment-gateway-nordea.php:502
+msgid "Payment verification error: Internal Server Error"
+msgstr "Maksun vahvistusvirhe: Sisäinen palvelinvirhe"
+
+#: class-wc-payment-gateway-nordea.php:508
+msgid "Payment verification error: Method not implemented"
+msgstr "Maksun vahvistusvirhe: Menetelmää ei ole otettu käyttöön"
+
+#: class-wc-payment-gateway-nordea.php:514
+msgid "Payment verification error: Service unavailable"
+msgstr "Maksun vahvistusvirhe: Palvelu ei ole käytettävissä"
+
+#: class-wc-payment-gateway-nordea.php:520
+msgid "Payment verification error: Unknown error"
+msgstr "Maksun vahvistusvirhe: Tuntematon virhe"
+
+#: class-wc-payment-gateway-nordea.php:528
+msgid "Payment verification error: Unexpeted error"
+msgstr "Maksun vahvistusvirhe: Odottamaton virhe"
+
+#: class-wc-payment-gateway-nordea.php:608
+msgid "Sent Nordea Erämaksu payment to invoicing"
+msgstr "Lähetti Nordea Erämaksun laskutukseen"
+
+#: class-wc-payment-gateway-nordea.php:610
+#: class-wc-payment-gateway-nordea.php:625
+msgid "Nordea API error: "
+msgstr "Nordean API-virhe: "
+
+#: class-wc-payment-gateway-nordea.php:623
+msgid "Cancelled Nordea Erämaksu installment payment"
+msgstr "Nordea Erämaksu rahoitus perutettu"
+
+#: class-wc-payment-gateway-nordea.php:647
+msgid "The refund amount must be larger than 1 EUR."
+msgstr "Palautuksen määrän on oltava suurempi kuin 1 EUR."
+
+#: class-wc-payment-gateway-nordea.php:665
+msgid "Refunded Nordea Erämaksu installment payment. Refunded amount: "
+msgstr "Hyvitetty Nordean Erämaksun osamaksua. Hyvityksen määrä: "
+
+#: class-wc-payment-gateway-nordea.php:667
+msgid "Nordea API error in refund: "
+msgstr "Nordean API-virhe hyvityksessä: "
+
+#: nordea-eramaksu-for-woocommerce.php:104
+msgid "Nordea Custom Text"
+msgstr "Nordean mukautettu teksti"
+
+#: nordea-eramaksu-for-woocommerce.php:105
+msgid "This is a custom text displayed in the Nordea payment gateway settings."
+msgstr ""
+"Tämä on mukautettu teksti, joka näkyy Nordean maksuyhdyskäytävän asetuksissa."
+
+#: nordea-eramaksu-for-woocommerce.php:131
+msgid "Nordea Continue Shopping URL"
+msgstr "Jatka ostoksia URL-osoite"
+
+#: nordea-eramaksu-for-woocommerce.php:132
+msgid ""
+"This is the URL for the \"Continue Shopping\" link displayed when the "
+"payment option is disabled."
+msgstr ""
+"Tämä on Jatka ostoksia -linkin URL-osoite, joka näytetään, kun maksutapa on "
+"poistettu käytöstä."
+
+#: nordea-eramaksu-for-woocommerce.php:141
+msgid "Continue Shopping Text"
+msgstr "Jatka ostoksia linkkiteksti"
+
+#: nordea-eramaksu-for-woocommerce.php:142
+msgid "This is the text displayed for the \"Continue Shopping\" link."
+msgstr ""
+"Tämä on mukautettu teksti, joka näkyy Nordea Erämaksun maksutavassa kun "
+"ostos on alle tai yli rajojen."
+
+#: nordea-eramaksu-for-woocommerce.php:169
+msgid "Start Range"
+msgstr "Alkuarvo"
+
+#: nordea-eramaksu-for-woocommerce.php:170
+msgid "The starting value of the range."
+msgstr "Rahoituksen minimiraja."
+
+#: nordea-eramaksu-for-woocommerce.php:183
+msgid "End Range"
+msgstr "Loppuarvo"
+
+#: nordea-eramaksu-for-woocommerce.php:184
+msgid "The ending value of the range."
+msgstr "Rahoituksen yläraja."
+
+#: nordea-eramaksu-for-woocommerce.php:403
+msgid "Payment error: Payment cancelled"
+msgstr "Maksuvirhe: Maksu peruutettu"
+
+#: nordea-eramaksu-for-woocommerce.php:405
+msgid "Payment error: Payment failed"
+msgstr "Maksuvirhe: Maksu epäonnistui"
+
+#: nordea-eramaksu-for-woocommerce.php:468
+msgid ""
+"Payment application completed successfully. Order status updated to "
+"processing by notification."
+msgstr ""
+"Rahoitushakemus suoritettu onnistuneesti. Tilauksen tila päivitetty "
+"käsittelyyn ilmoituksella."
+
+#: nordea-eramaksu-for-woocommerce.php:475
+msgid "Nordea Finance notification. Payment application decision is pending. "
+msgstr "Nordea Rahoituksen ilmoitus. Rahoitushakemus on vireillä. "
+
+#: nordea-eramaksu-for-woocommerce.php:480
+msgid ""
+"Nordea Finance notification. Payment application was rejected by Nordea. "
+msgstr "Nordea Rahoituksen ilmoitus. Nordea hylkäsi rahoitushakemuksen. "
+
+#: nordea-eramaksu-for-woocommerce.php:485
+msgid ""
+"Nordea Finance notification. Payment application failed due to a technical "
+"issue with Nordea. "
+msgstr ""
+"Nordea Rahoituksen ilmoitus. Rahoitushakemus epäonnistui Nordean kanssa "
+"ilmenneen teknisen ongelman vuoksi. "
+
+#: nordea-eramaksu-for-woocommerce.php:489
+msgid "Nordea Finance notification. Payment application status changed to "
+msgstr "Nordea Rahoituksen ilmoitus. Rahoitushakemuksen tilaksi on muutettu "
+
+#. Plugin Name of the plugin/theme
+msgid "Nordea Finance Erämaksu for WooCOmmerce"
+msgstr "Nordea Finance Erämaksu for WooCommerce"
+
+#. Plugin URI of the plugin/theme
+msgid "-"
+msgstr "-"
+
+#. Description of the plugin/theme
+msgid "Nordea Erämaksu Payment Gateway."
+msgstr "Nordea Erämaksun maksuyhdyskäytävä."
+
+#. Author of the plugin/theme
+msgid "Capgemini"
+msgstr "Capgemini"
+
+#. Author URI of the plugin/theme
+msgid "https://www.capgemini.com"
+msgstr "https://www.capgemini.com"
+
+#~ msgid "nordea"
+#~ msgstr "nordea"
+
+#~ msgid "Payment session could not be created. Please try again later."
+#~ msgstr "Maksuistuntoa ei voitu luoda. Yritä myöhemmin uudelleen."
+
+#~ msgid "Invalid response from Nordea. Please contact support."
+#~ msgstr "Nordean virheellinen vastaus. Ota yhteyttä tukeen."
+
+#~ msgid "Order not found. Please contact support."
+#~ msgstr "Tilausta ei löytynyt. Ota yhteyttä tukeen."
+
+#~ msgid "Payment received and order is being processed."
+#~ msgstr "Maksu vastaanotettu ja tilausta käsitellään."
+
+#~ msgid "Failed to verify payment status with Nordea."
+#~ msgstr "Maksun tilan vahvistaminen Nordeassa epäonnistui."
+
+#~ msgid "Payment was rejected."
+#~ msgstr "Maksu hylättiin."
+
+#~ msgid "Payment failed due to a technical issue."
+#~ msgstr "Maksu epäonnistui teknisen ongelman vuoksi."
+
+#~ msgid "Unknown payment status."
+#~ msgstr "Maksun tila tuntematon."
+
+#~ msgid "Received an unknown status from Nordea."
+#~ msgstr "Sai tuntemattoman statuksen Nordeasta."
+
+#~ msgid ""
+#~ "Thank you for your payment! Your payment via Nordea Finance Erämaksu has "
+#~ "been processed successfully."
+#~ msgstr ""
+#~ "Kiitos maksustasi! Nordea Rahoituksen Erämaksun kautta tekemäsi maksu on "
+#~ "käsitelty onnistuneesti."
+
+#~ msgid "Order Total: "
+#~ msgstr "Tilaus yhteensä: "
+
+#~ msgid "We appreciate your business!"
+#~ msgstr "Arvostamme liiketoimintaasi!"

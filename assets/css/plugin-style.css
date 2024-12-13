@@ -1,0 +1,48 @@
+.wc-block-checkout__payment-method .ndea-checkout-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.wc-block-checkout__payment-method .ndea-checkout-logo { 
+    max-height: 48px !important;
+    height: 48px !important;
+    margin-left: 80px;
+} 
+
+@media screen and (max-width: 1000px) {
+    .wc-block-checkout__payment-method .ndea-checkout-label {
+        display: block;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    .wc-block-checkout__payment-method .ndea-checkout-logo { 
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+}
+
+.custom-notice {
+    font-size: 16px; /* Adjust font size */
+    color: #000000; /* Black color */
+    font-weight: bold; /* Bold text */
+    margin-left: 20px; /* Negative left margin */
+    margin-top: 10px; /* Optional spacing at the top */
+}
+
+.custom-link {
+    color: red; /* Red text */
+    text-decoration: none; /* Optional: underline the link */
+    font-weight: bold; /* Optional: make it bold */
+    margin-left: 10px; /* Optional: add some spacing */
+    font-size: 16px; /* Optional: set a font size */
+    margin-left: 20px; /* Negative left margin */
+    margin-top: 20px; /* Optional spacing at the top */
+}
+
+.custom-link:hover {
+    color: red; /* Change color on hover */
+    text-decoration: none; /* Remove underline on hover */
+    margin-left: 20px; /* Negative left margin */
+    margin-top: 20px; /* Optional spacing at the top */
+}
