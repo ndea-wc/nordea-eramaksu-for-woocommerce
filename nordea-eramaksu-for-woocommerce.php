@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Nordea Finance Erämaksu for WooCOmmerce
- * Plugin URI: -
+ * Plugin Name: Nordea Finance Erämaksu for WooCommerce
+ * Plugin URI: https://github.com/ndea-wc/nordea-eramaksu-for-woocommerce
  * Author: Capgemini
  * Author URI: https://www.capgemini.com
- * Description: Nordea Erämaksu Payment Gateway.
+ * Description: Nordea Finance Erämaksu Payment Gateway.
  * Version: 0.9.1
  * Requires at least: 6.0
  * Requires Plugins: woocommerce
