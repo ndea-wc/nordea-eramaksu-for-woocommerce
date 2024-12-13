@@ -49,17 +49,21 @@ Required checkout fields are:
 
 ## Order management
 
+When an order has been made using Nordea Finance Erämaksu as payment option and the application has been approved in the process, the order itself can be managed directly in the WooCommerce order admin. This way the order status can be synchronized between the store and Nordea Finance.
+
 The following operations cannot be undone, so some caution is required in order management:
 - When completing an order which has been paid with Nordea Finance Erämaksu the plugin contacts Nordea Finance API to release the instalment payment to invoicing. 
 - Order that has not been completed can be cancelled. On cancellation the plugin contacts Nordea Finance API to cancel the instalment payment.
 - Order that has been completed can be refunded either partially or completely. On refund the plugin contacts Nordea Finance API to make a refund to the instalment payment. Refunds are cumulative until the total value has been refunded.
 
-## Notes
+## Important notes
 
 - Plugin supports only purchases in EUR currency
 - Plugin does not support subscription type of orders
 - Plugin does not necessarily support additional checkout fields or other extras
 - Plugin does not support express checkout
+
+Nordea Finance or Capgemini do not provide support for modifying the plugin or you theme to support Nordea Finance Erämaksu, but you are free to do so. You can find the [Nordea Finance API](https://developer.nordeaopenbanking.com/documentation?api=Purchase%20Finance%20API) documention to be of some help. 
 
 
 
