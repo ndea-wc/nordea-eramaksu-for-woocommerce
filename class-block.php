@@ -55,6 +55,7 @@ final class Nordea_Eramaksu_Blocks extends AbstractPaymentMethodType {
         return [
             'title' => $this->gateway->title,
             'description' => $this->gateway->description,
+            'legal_text' => $this->gateway->legal_text,
             'icon' => plugin_dir_url( __FILE__ ) . 'assets/images/Nordea_Eramaksu.png', // Add image URL here
         ];
     }

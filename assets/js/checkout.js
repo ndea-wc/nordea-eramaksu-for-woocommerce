@@ -3,7 +3,16 @@ const label = window.wp.htmlEntities.decodeEntities(settings.title) || window.wp
 
 const Content = () => {
     const description = window.wp.htmlEntities.decodeEntities(settings.description || '');
-    return description ? `<p>${description}</p>` : '';
+    const legalText = window.wp.htmlEntities.decodeEntities(settings.legal_text || '');
+
+    // Start with the description HTML
+    let contentHtml = description || '';
+    // Append the legal text if available
+    if (legalText) {
+        contentHtml += `<div class="nordea-legal-text"><p>${legalText}</p></div>`;
+    }
+
+    return contentHtml;
 };
 
 const labelHtml = wp.element.createElement(

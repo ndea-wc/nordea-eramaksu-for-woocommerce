@@ -5,7 +5,7 @@
  * Author: Capgemini
  * Author URI: https://www.capgemini.com
  * Description: Nordea Finance Erämaksu Payment Gateway.
- * Version: 0.9.1
+ * Version: 0.9.2
  * Requires at least: 6.0
  * Requires Plugins: woocommerce
  * Tested up to: 6.7
@@ -44,12 +44,23 @@ function add_nordea_eramaksu_gateway($gateways) {
 /**
  * Custom function to declare compatibility with cart_checkout_blocks feature 
 */
-add_action('before_woocommerce_init', 'declare_cart_checkout_blocks_compatibility');
-function declare_cart_checkout_blocks_compatibility() {
-    if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
-        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('cart_checkout_blocks', __FILE__, true);
+add_action('before_woocommerce_init', function() {
+    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+        // Declare compatibility for Cart and Checkout Blocks.
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+            'cart_checkout_blocks',
+            __FILE__,
+            true
+        );
+
+        // Declare compatibility for Custom Order Tables.
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+            'custom_order_tables',
+            __FILE__,
+            true
+        );
     }
-}
+});
 
 /**
  * Custom function to register a payment method type
@@ -73,6 +84,8 @@ function nordea_register_order_approval_payment_method_type() {
         }
     );
 }
+
+
 
 /**
  * Add plugin styles
@@ -114,6 +127,10 @@ function add_custom_nordea_gateway_text_field($settings, $current_section) {
             'type'     => 'textarea',
             'default'  => '',
             'desc_tip' => true,
+            'custom_attributes' => array(
+        'rows' => 5,  // Number of rows
+        'cols' => 50  // Number of columns
+    ),
         );
 
         // Add an empty space after the first field (using 'title' for spacing)
@@ -535,18 +552,19 @@ function nordea_disable_refund_for_processing_orders() {
 /**
  * Resize amdin steiings text field
  */
-function custom_admin_js_for_nordea_description() {
+function custom_admin_js_for_nordea_legal_text() {
     ?>
     <script type="text/javascript">
         jQuery(function($) {
             // Ensure the textarea is resized properly
-            $('textarea[name="woocommerce_nordea-eramaksu_description"]').attr('rows', '10').css({
+            $('textarea[name="woocommerce_nordea-eramaksu_legal_text"]').attr('rows', '8').css({
                 
             });
         });
     </script>
     <?php
 }
-add_action('admin_footer', 'custom_admin_js_for_nordea_description');
+add_action('admin_footer', 'custom_admin_js_for_nordea_legal_text');
+
 
 ?>

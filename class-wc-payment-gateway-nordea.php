@@ -27,15 +27,15 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
     public function __construct() {
         $this->id                 = 'nordea-eramaksu';
         $this->icon               = apply_filters('woocommerce_nordea_icon', plugins_url('/assets/images/Nordea_Eramaksu.png', __FILE__));
-        $this->method_title       = __('Nordea Erämaksu', 'nordea-eramaksu-for-woocommerce');
+        $this->method_title       = __('Nordea Finance Erämaksu', 'nordea-eramaksu-for-woocommerce');
         $this->method_description = __('Enable payments via Nordea Erämaksu', 'nordea-eramaksu-for-woocommerce');
 
         // Gateway setting initialization
         $this->init_form_fields();
         $this->init_settings();
         
-        $this->title            = $this->get_option('title');
-        $this->description      = $this->get_option('description');
+        $this->title            = 'Nordea Finance Erämaksu';
+        $this->description      = $this->get_option('description') . '</br>' . $this->get_option('legal_text') ;
         $this->client_id        = $this->get_option('client_id');
         $this->client_secret    = $this->get_option('client_secret');
         $this->dealer_id        = $this->get_option('dealer_id');
@@ -79,17 +79,24 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
                                 '</div>',
         ),
         
-        'title' => [
-            'title'       => __('Title', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'text',
-            'default'     => 'Nordea Finance Erämaksu',
-            'desc_tip'    => true,
-        ],
+        
         'description' => [
             'title'       => __('Description', 'nordea-eramaksu-for-woocommerce'),
             'type'        => 'textarea',
             'default'     => 'Pay with Nordea Erämaksu.',
             'desc_tip'    => true,
+        ],
+        'legal_text' => [
+            'title'       => __('Legal Information', 'nordea-eramaksu-for-woocommerce'),
+            'type'        => 'textarea',
+            'default'     => 'Henkilötietojasi luovutetaan luotonantaja Nordea Rahoitus Suomi Oy:lle, joka käsittelee niitä rekisterinpitäjänä luoton myöntämistä ja valvontaa varten. ' .
+                            'Yksityiskohtaista tietoa henkilötietojen käsittelystä annetaan Nordean tietosuojaselosteessa, jonka voit saada myös ottamalla yhteyttä luotonantajaan. ' .
+                            '<a href="https://www.nordea.com/fi/tietosuojaseloste" target="_blank">Tietosuojaseloste</a> sisältää tietoa henkilötietojesi käsittelyyn liittyvistä oikeuksistasi, ' .
+                            'joita ovat muun muassa oikeus tutustua tietoihin, oikeus tietojen oikaisemiseen ja oikeus siirtää tiedot järjestelmästä toiseen.', 'nordea-eramaksu-for-woocommerce',
+            'desc_tip'    => true,
+            'custom_attributes' => array(
+                'readonly' => 'readonly'
+            ),
         ],
         'client_id' => [
             'title'       => __('API Client ID', 'nordea-eramaksu-for-woocommerce'),
