@@ -5,7 +5,7 @@
  * Author: Capgemini
  * Author URI: https://www.capgemini.com
  * Description: Nordea Finance Erämaksu Payment Gateway.
- * Version: 0.9.2
+ * Version: 0.9.3
  * Requires at least: 6.0
  * Requires Plugins: woocommerce
  * Tested up to: 6.7
@@ -21,6 +21,8 @@
  *
  * @package NordeaEramaksu\WooCommercePaymentGateway
  */
+
+ include plugin_dir_path(__FILE__) . 'nordea-eramaksu-configuration.php';
 
 /**
  * Load Nordea Erämaksu gateway class
@@ -85,8 +87,6 @@ function nordea_register_order_approval_payment_method_type() {
     );
 }
 
-
-
 /**
  * Add plugin styles
  */
@@ -96,139 +96,6 @@ function ndea_wc_css() {
 }
 add_action( 'wp_enqueue_scripts', 'ndea_wc_css' );
 
-/**
- * Add settings fields to payment gateway settings
- */
-add_filter('woocommerce_get_settings_checkout', 'add_custom_blank', 10, 2);
-function add_custom_blank($settings, $current_section) {
-    if ('nordea-eramaksu' === $current_section) {
-        // Add an empty space after the first field (using 'title' for spacing)
-        $settings[] = array(
-            'name'     => '', // Empty name for space
-            'desc'     => '', // No description for the empty space
-            'id'       => 'nordea_empty_space_1', // Unique ID
-            'type'     => 'title', // Title type for adding space
-            'default'  => '',
-            'desc_tip' => false,
-        );
-    }
-
-    return $settings;
-}
-// Add a custom text field in the Nordea payment gateway settings
-add_filter('woocommerce_get_settings_checkout', 'add_custom_nordea_gateway_text_field', 10, 2);
-function add_custom_nordea_gateway_text_field($settings, $current_section) {
-    if ('nordea-eramaksu' === $current_section) {
-        // Add the "Nordea Custom Text" field
-        $settings[] = array(
-            'name'     => __('Nordea Custom Text', 'nordea-eramaksu-for-woocommerce'),
-            'desc'     => __('This is a custom text displayed in the Nordea payment gateway settings.', 'nordea-eramaksu-for-woocommerce'),
-            'id'       => 'woocommerce_nordea_custom_text',  // Option name to store the value
-            'type'     => 'textarea',
-            'default'  => '',
-            'desc_tip' => true,
-            'custom_attributes' => array(
-        'rows' => 5,  // Number of rows
-        'cols' => 50  // Number of columns
-    ),
-        );
-
-        // Add an empty space after the first field (using 'title' for spacing)
-        $settings[] = array(
-            'name'     => '', // Empty name for space
-            'desc'     => '', // No description for the empty space
-            'id'       => 'nordea_empty_space_1', // Unique ID
-            'type'     => 'title', // Title type for adding space
-            'default'  => '',
-            'desc_tip' => false,
-        );
-    }
-
-    return $settings;
-}
-// Add Continue Shopping URL and Text fields
-add_filter('woocommerce_get_settings_checkout', 'add_nordea_continue_shopping_fields', 10, 2);
-function add_nordea_continue_shopping_fields($settings, $current_section) {
-    if ('nordea-eramaksu' === $current_section) {
-        // Add the "Continue Shopping URL" field
-        $settings[] = array(
-            'name'     => __('Nordea Continue Shopping URL', 'nordea-eramaksu-for-woocommerce'),
-            'desc'     => __('This is the URL for the "Continue Shopping" link displayed when the payment option is disabled.', 'nordea-eramaksu-for-woocommerce'),
-            'id'       => 'woocommerce_nordea_continue_shopping_url',  // Option name to store the value
-            'type'     => 'text',
-            'default'  => home_url(),  // Default to the homepage URL
-            'desc_tip' => true,
-        );
-
-        // Add the "Continue Shopping Text" field
-        $settings[] = array(
-            'name'     => __('Continue Shopping Text', 'nordea-eramaksu-for-woocommerce'),
-            'desc'     => __('This is the text displayed for the "Continue Shopping" link.', 'nordea-eramaksu-for-woocommerce'),
-            'id'       => 'woocommerce_nordea_continue_shopping_text',  // Option name to store the value
-            'type'     => 'text',
-            'default'  => 'Jatka ostoksia', // Default text
-            'desc_tip' => true,
-        );
-
-        // Add an empty space after the fields (using 'title' for spacing)
-        $settings[] = array(
-            'name'     => '', // Empty name for space
-            'desc'     => '', // No description for the empty space
-            'id'       => 'nordea_empty_space_continue', // Unique ID
-            'type'     => 'title', // Title type for spacing
-            'default'  => '',
-            'desc_tip' => false,
-        );
-    }
-
-    return $settings;
-}
-
-add_filter('woocommerce_get_settings_checkout', 'add_nordea_range_fields', 10, 2);
-
-function add_nordea_range_fields($settings, $current_section) {
-    if ('nordea-eramaksu' === $current_section) {
-        // Add the "Start Range" field
-        $settings[] = array(
-            'name'     => __('Start Range', 'nordea-eramaksu-for-woocommerce'),
-            'desc'     => __('The starting value of the range.', 'nordea-eramaksu-for-woocommerce'),
-            'id'       => 'woocommerce_nordea_start_range',  // Option name to store the start range value
-            'type'     => 'number', // Number input type
-            'default'  => '500',  // Default to 500
-            'custom_attributes' => array(
-                'min' => '500', // Minimum value
-                'max' => '30000', // Maximum value
-            ),
-            'desc_tip' => true,
-        );
-
-        // Add the "End Range" field
-        $settings[] = array(
-            'name'     => __('End Range', 'nordea-eramaksu-for-woocommerce'),
-            'desc'     => __('The ending value of the range.', 'nordea-eramaksu-for-woocommerce'),
-            'id'       => 'woocommerce_nordea_end_range',  // Option name to store the end range value
-            'type'     => 'number', // Number input type
-            'default'  => '30000',  // Default to 30,000
-            'custom_attributes' => array(
-                'min' => '500', // Minimum value
-                'max' => '30000', // Maximum value
-            ),
-            'desc_tip' => true,
-        );
-
-        // Add an empty space for better visual separation
-        $settings[] = array(
-            'name'     => '', // Empty name for spacing
-            'desc'     => '', // No description for the empty space
-            'id'       => 'nordea_empty_space_range', // Unique ID for spacing
-            'type'     => 'title', // Title type for spacing
-            'default'  => '',
-            'desc_tip' => false,
-        );
-    }
-
-    return $settings;
-}
 
 // Add custom CSS to adjust the text area width in the Payments tab for Nordea
 add_action('admin_head', 'custom_nordea_gateway_payment_text_area_css');
@@ -249,44 +116,21 @@ function custom_nordea_gateway_payment_text_area_css() {
 function nordea_checkout_script() {
     if (is_checkout() && !is_wc_endpoint_url()) {
         // PHP variables
-        $cart_amount_text = get_option('woocommerce_nordea_custom_text', 'The cart total must be between 500 and 30000.');
-        $continue_shopping_url = get_option('woocommerce_nordea_continue_shopping_url', home_url());
-
-        if (empty($continue_shopping_url)) {
-            // If empty, set a default value
-            $continue_shopping_url = home_url();
-        }
-        
-        $continue_Shopping_Text = sanitize_text_field(get_option('woocommerce_nordea_continue_shopping_text', 'Jatka ostoksia'));
-        if (empty($continue_Shopping_Text)) {
-            $continue_Shopping_Text = 'Jatka ostoksia'; // Default text
-        }
+        $options = get_option('woocommerce_nordea-eramaksu_settings');
         $cart_total = WC()->cart->get_total('raw'); // Full total, including shipping and fees
         // Retrieve the Start Range value from the settings
-        // Retrieve the Start Range value from the settings
-        $start_range = get_option('woocommerce_nordea_start_range', 500); // Default to 500 if not set
-        if (empty($start_range) || !is_numeric($start_range)) {
-            $start_range = 500; // Default value if empty or invalid
-        }
-
-        // Retrieve the End Range value from the settings
-        $end_range = get_option('woocommerce_nordea_end_range', 30,000); // Default to 30000 if not set
-        if (empty($end_range) || !is_numeric($end_range)) {
-            $end_range = 30000; // Default value if empty or invalid
-        }
-
         ?>
         <script type="text/javascript">
             jQuery(function($) {
                 console.log('Nordea checkout script loaded');
 
                 // Pass PHP variables to JS
-                var cartAmountText = '<?php echo esc_js($cart_amount_text); ?>';
-                var continueShoppingUrl = '<?php echo esc_url($continue_shopping_url); ?>';
-                var continueShoppingText = '<?php echo esc_js($continue_Shopping_Text); ?>';
+                var cartAmountText = '<?php echo esc_js($options['custom_text']); ?>';
+                var continueShoppingUrl = '<?php echo esc_url($options['continue_shopping_url']); ?>';
+                var continueShoppingText = '<?php echo esc_js($options['continue_shopping_text']); ?>';
                 var fallbackCartTotal = parseFloat('<?php echo $cart_total; ?>');
-                var startRange = <?php echo esc_js($start_range); ?>;
-                var endRange = <?php echo esc_js($end_range); ?>;  
+                var startRange = <?php echo esc_js($options['start_range']); ?>;
+                var endRange = <?php echo esc_js($options['end_range']); ?>;  
         
                 function getCartTotal() {
                     var cartTotalText = $('.order-total .amount').text(); // Try fetching from DOM
@@ -311,7 +155,7 @@ function nordea_checkout_script() {
 
                     var cartTotal = getCartTotal();
                     console.log('Checking cart total:', cartTotal);
-
+                    
                     var nordeaRadioButtonBlock = $('input[name="radio-control-wc-payment-method-options"][value="nordea-eramaksu"]');
                     var nordeaBlockContainer = nordeaRadioButtonBlock.closest('.wc-block-components-radio-control-accordion-option');
 
@@ -369,37 +213,13 @@ function nordea_enqueue_checkout_scripts() {
         );
 
         // Localize script with PHP data
-      
-        $cartAmountText = get_option('woocommerce_nordea_custom_text');
-       // $continueShoppingUrl = get_option('woocommerce_nordea_continue_shopping_url', home_url()); // Default to homepage URL if not set
-        $continueShoppingUrl = get_option('woocommerce_nordea_continue_shopping_url', home_url());
-        $continueShoppingText = sanitize_text_field(get_option('woocommerce_nordea_continue_shopping_text','Jatka ostoksia'));
-
-        if (empty($continueShoppingUrl)) {
-            // If empty, set a default value
-            $continueShoppingUrl = home_url();
-        }
-        if (empty($continueShoppingText)) {
-            $continueShoppingText = 'Jatka ostoksia'; // Default text
-        }
-
-        $startRange = get_option('woocommerce_nordea_start_range', 500); // Default to 500 if not set
-        if (empty($startRange) || !is_numeric($startRange)) {
-            $startRange = 500; // Default value if empty or invalid
-        }
-        
-        // Retrieve the End Range value from the settings
-        $endRange = get_option('woocommerce_nordea_end_range', 30,000); // Default to 30000 if not set
-        if (empty($endRange) || !is_numeric($endRange)) {
-            $endRange = 30000; // Default value if empty or invalid
-        }
-
-       wp_localize_script('nordea-eramaksu-checkout-script', 'nordeaPaymentData', array(
-            'cartAmountText' => esc_html($cartAmountText),
-            'continueShoppingUrl' => esc_url($continueShoppingUrl),
-            'continueShoppingText' => esc_html($continueShoppingText), // Pass the new text
-            'startRange' => intval($startRange), // Ensure it's an integer
-            'endRange' => intval($endRange),    // Ensure it's an integer
+        $options = get_option('woocommerce_nordea-eramaksu_settings');
+        wp_localize_script('nordea-eramaksu-checkout-script', 'nordeaPaymentData', array(
+            'cartAmountText' => esc_html($options['custom_text']),
+            'continueShoppingUrl' => esc_url($options['continue_shopping_url']),
+            'continueShoppingText' => esc_html($options['continue_shopping_text']),
+            'startRange' => intval($options['start_range']), // Ensure it's an integer
+            'endRange' => intval($options['end_range']),    // Ensure it's an integer
             'paymentCancelledMessage' => __( 'Payment error: Payment cancelled', 'nordea-eramaksu-for-woocommerce' ),
             'paymentFailedMessage' => __( 'Payment error: Payment failed', 'nordea-eramaksu-for-woocommerce' ),
         ));

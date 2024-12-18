@@ -11,3 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed plugin title to Nordea Finance Erämaksu
 - Made Nordea Finance logo smaller
 - Moved legal text to be predifined and constant
+
+## [0.9.3] - 2024-12-18
+### Added
+- Added separate configuration file for plugin defaults
+### Fixed
+- Fixed reading plugin settings from options

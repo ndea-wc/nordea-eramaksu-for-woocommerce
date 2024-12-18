@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const endRange = nordeaPaymentData.endRange; // Maximum cart amount
 
         const applyNordeaPaymentFilter = () => {
-           // console.log('applyNordeaPaymentFilter executed'); // Debug
-
             registerCheckoutFilters('nordea-eramaksu-total-filter', {
                 totalLabel: (value, extensions, args) => {
 
@@ -74,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         message.id = 'nordea_return_payment_error_message';
                         message.className = 'wc-block-components-notice-banner is-error';
                         message.role = 'alert';
-
                         // Add SVG icon to the message
                         const svgIcon = `
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
@@ -82,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             </svg>`;
                         message.innerHTML = svgIcon + 
                             `<span>${statusMessage === 'cancel' ? nordeaPaymentData.paymentCancelledMessage : nordeaPaymentData.paymentFailedMessage}</span>`;
-
                         notifyArea.appendChild(message);
                     }
 
@@ -97,26 +93,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (!Number.isInteger(totalPrice)) {
                             totalPrice = parseFloat(totalPrice.toFixed(2));
                         }
-
-
+                        //console.log(totalPrice);
+                        //console.log(startRange);
+                        //console.log(endRange);
                         const nordeaRadio = document.querySelector(
                             'input[name="radio-control-wc-payment-method-options"][value="nordea-eramaksu"]'
                         );
                         const nordeaDiv = nordeaRadio?.closest('.wc-block-components-radio-control-accordion-option');
-
                         if (nordeaDiv) {
                             let errorMessage = nordeaDiv.querySelector('#nordea_payment_message');
                             let continueLink = nordeaDiv.querySelector('.continue-shopping');
                             if (errorMessage) errorMessage.remove();
                             if (continueLink) continueLink.remove();
-
                             if (totalPrice < startRange || totalPrice > endRange) {
-                                if (nordeaRadio.checked) {
+                                if (nordeaRadio.checked && document.querySelectorAll('input[name="radio-control-wc-payment-method-options"]').length > 1 ) { // Skip if only one option available
                                     nordeaRadio.checked = false;
                                     nordeaRadio.dispatchEvent(new Event('change'));
                                     location.reload();
                                 }
-
                                 nordeaRadio.disabled = true;
                                 nordeaRadio.dispatchEvent(new Event('change'));
 
@@ -132,10 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 link.className = 'continue-shopping custom-link';
                                 link.innerText = continueShoppingText;
                                 nordeaDiv.appendChild(link);
-
-                               // console.log('Nordea payment disabled with message'); // Debug
                             } else {
                                 nordeaRadio.disabled = false;
+                                nordeaRadio.dispatchEvent(new Event('change'));
                             }
                         }
 
@@ -147,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         const observer = new MutationObserver((mutationsList) => {
-          //  console.log('Mutations detected:', mutationsList); // Debug
             applyNordeaPaymentFilter();
         });
 

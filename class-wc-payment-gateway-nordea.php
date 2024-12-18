@@ -34,12 +34,18 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
         $this->init_form_fields();
         $this->init_settings();
         
-        $this->title            = 'Nordea Finance Erämaksu';
-        $this->description      = $this->get_option('description') . '</br>' . $this->get_option('legal_text') ;
-        $this->client_id        = $this->get_option('client_id');
-        $this->client_secret    = $this->get_option('client_secret');
-        $this->dealer_id        = $this->get_option('dealer_id');
-        $this->order_id_prefix  = $this->get_option('order_id_prefix');
+        $this->title                       = 'Nordea Finance Erämaksu';
+        $this->description                 = $this->get_option('description') . '</br>' . $this->get_option('legal_text') ;
+        $this->client_id                   = $this->get_option('client_id');
+        $this->client_secret               = $this->get_option('client_secret');
+        $this->dealer_id                   = $this->get_option('dealer_id');
+        $this->order_id_prefix             = $this->get_option('order_id_prefix');
+        $this->custom_text                 = $this->get_option('custom_text');
+        $this->continue_shopping_url       = $this->get_option('continue_shopping_url');
+        $this->continue_shopping_text      = $this->get_option('continue_shopping_text');
+        $this->start_range                 = $this->get_option('start_range');
+        $this->end_range                   = $this->get_option('end_range');
+
 
         // Add actions and filters.
         $this->add_actions();
@@ -69,60 +75,94 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
 	 */
     public function init_form_fields() {
         $this->form_fields = array(
-        'enabled' => array(
-            'title'   => __('Enable/Disable', 'nordea-eramaksu-for-woocommerce'),
-            'type'    => 'checkbox',
-            'label'   => __('Enable Nordea Erämaksu', 'nordea-eramaksu-for-woocommerce'),
-            'default' => 'yes',
-            'description' => '<div style="display: flex; align-items: center; margin-top: 10px;">' .
-                                '<img src="' . plugins_url('/assets/images/Nordea_Eramaksu.png', __FILE__) . '" alt="Nordea Erämaksu" style="vertical-align: middle; max-width: 150px; height: auto; margin-left: 10px;">' . // Image after text
-                                '</div>',
-        ),
-        
-        
-        'description' => [
-            'title'       => __('Description', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'textarea',
-            'default'     => 'Pay with Nordea Erämaksu.',
-            'desc_tip'    => true,
-        ],
-        'legal_text' => [
-            'title'       => __('Legal Information', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'textarea',
-            'default'     => 'Henkilötietojasi luovutetaan luotonantaja Nordea Rahoitus Suomi Oy:lle, joka käsittelee niitä rekisterinpitäjänä luoton myöntämistä ja valvontaa varten. ' .
-                            'Yksityiskohtaista tietoa henkilötietojen käsittelystä annetaan Nordean tietosuojaselosteessa, jonka voit saada myös ottamalla yhteyttä luotonantajaan. ' .
-                            '<a href="https://www.nordea.com/fi/tietosuojaseloste" target="_blank">Tietosuojaseloste</a> sisältää tietoa henkilötietojesi käsittelyyn liittyvistä oikeuksistasi, ' .
-                            'joita ovat muun muassa oikeus tutustua tietoihin, oikeus tietojen oikaisemiseen ja oikeus siirtää tiedot järjestelmästä toiseen.', 'nordea-eramaksu-for-woocommerce',
-            'desc_tip'    => true,
-            'custom_attributes' => array(
-                'readonly' => 'readonly'
+            'enabled' => array(
+                'title'   => __('Enable/Disable', 'nordea-eramaksu-for-woocommerce'),
+                'type'    => 'checkbox',
+                'label'   => __('Enable Nordea Erämaksu', 'nordea-eramaksu-for-woocommerce'),
+                'default' => 'yes',
+                'description' => '<div style="display: flex; align-items: center; margin-top: 10px;">' .
+                                    '<img src="' . plugins_url('/assets/images/Nordea_Eramaksu.png', __FILE__) . '" alt="Nordea Erämaksu" style="vertical-align: middle; max-width: 150px; height: auto; margin-left: 10px;">' .
+                                    '</div>',
             ),
-        ],
-        'client_id' => [
-            'title'       => __('API Client ID', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'text',
-            'default'     => '',
-            'desc_tip'    => true,
-        ],
-        'client_secret' => [
-            'title'       => __('API Client Secret', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'password',
-            'default'     => '',
-            'desc_tip'    => true,
-        ],
-        'dealer_id' => [
-            'title'       => __('Dealer ID', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'text',
-            'default'     => '',
-            'desc_tip'    => true,
-        ],
-        'order_id_prefix' => [
-            'title'       => __('Order ID Prefix', 'nordea-eramaksu-for-woocommerce'),
-            'type'        => 'text',
-            'default'     => '',
-            'desc_tip'    => true,
-        ],
-        // Add more settings fields as needed
+            'description' => array(
+                'title'       => __('Description', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'textarea',
+                'default'     => DESCRIPTION,
+                'desc_tip'    => true,
+            ),
+            'legal_text' => array(
+                'title'       => __('Legal Information', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'textarea',
+                'default'     => LEGAL_INFORMATION, 
+                'desc_tip'    => true,
+                'custom_attributes' => array('readonly' => 'readonly'),
+            ),
+            'client_id' => array(
+                'title'       => __('API Client ID', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'text',
+                'default'     => '',
+                'desc_tip'    => true,
+            ),
+            'client_secret' => array(
+                'title'       => __('API Client Secret', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'password',
+                'default'     => '',
+                'desc_tip'    => true,
+            ),
+            'dealer_id' => array(
+                'title'       => __('Dealer ID', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'text',
+                'default'     => '',
+                'desc_tip'    => true,
+            ),
+            'order_id_prefix' => array(
+                'title'       => __('Order ID Prefix', 'nordea-eramaksu-for-woocommerce'),
+                'type'        => 'text',
+                'default'     => '',
+                'desc_tip'    => true,
+            ),
+            'custom_text' => array(
+                'title'             => __('Nordea Custom Text', 'nordea-eramaksu-for-woocommerce'),
+                'type'              => 'textarea',
+                'default'           => CUSTOM_TEXT,
+                'desc_tip'          => true,
+                'custom_attributes' => array(
+                    'rows' => 5,
+                    'cols' => 50,
+                ),
+            ),
+            'continue_shopping_url' => array(
+                'title'       => __('Nordea Continue Shopping URL', 'nordea-eramaksu-for-woocommerce'),
+                'id'          => 'woocommerce_nordea_continue_shopping_url',
+                'type'        => 'text',
+                'default'     => home_url(),
+                'desc_tip'    => true,
+            ),
+            'continue_shopping_text' => array(
+                'title'       => __('Continue Shopping Text', 'nordea-eramaksu-for-woocommerce'),
+                'id'          => 'woocommerce_nordea_continue_shopping_text',
+                'type'        => 'text',
+                'default'     => CONTINUE_SHOPPING_TEXT,
+                'desc_tip'    => true,
+            ),
+            'start_range' => array(
+                'title'       => __('Start Range', 'nordea-eramaksu-for-woocommerce'),
+                'desc'        => __('The starting value of the range.', 'nordea-eramaksu-for-woocommerce'),
+                'id'          => 'woocommerce_nordea_start_range',
+                'type'        => 'number',
+                'default'     => '500',
+                'custom_attributes' => array('min' => '500', 'max' => '30000'),
+                'desc_tip'    => true,
+            ),
+            'end_range' => array(
+                'title'       => __('End Range', 'nordea-eramaksu-for-woocommerce'),
+                'desc'        => __('The ending value of the range.', 'nordea-eramaksu-for-woocommerce'),
+                'id'          => 'woocommerce_nordea_end_range',
+                'type'        => 'number',
+                'default'     => '30000',
+                'custom_attributes' => array('min' => '500', 'max' => '30000'),
+                'desc_tip'    => true,
+            ),
         );
     }
 
@@ -138,14 +178,11 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
             wc_add_notice(__('Payment error: Missing required gateway credentials.', 'nordea-eramaksu-for-woocommerce'), 'error');
             return false;
         }
-        // Get the start and end range from WooCommerce settings and validate total range
-        $start_range = get_option('woocommerce_nordea_start_range', 500);  // Default to 500 if not set
-        $end_range = get_option('woocommerce_nordea_end_range', 30000);  // Default to 30000 if not set
-        // Validate the cart total range dynamically using the WooCommerce settings
+        // Validate the cart total range dynamically using the values from plugin settings
         $cart_total = floatval(WC()->cart->get_total('raw'));
-        if ($cart_total < $start_range || $cart_total > $end_range) {
+        if ($cart_total < $this->get_option('start_range') || $cart_total > $this->get_option('end_range')) {
             wc_add_notice(
-                sprintf(__('Payment error: Total value for Nordea Erämaksu must be between %1$s€ and %2$s€.', 'nordea-eramaksu-for-woocommerce'), $start_range, $end_range),
+                sprintf(__('Payment error: Total value for Nordea Erämaksu must be between %1$s€ and %2$s€.', 'nordea-eramaksu-for-woocommerce'), $this->get_option('start_range'), $this->get_option('end_range')),
                 'error'
             );
             return false;  // Prevent checkout
@@ -648,9 +685,9 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
             'reason' => $reason,
             'application_reference_id' => $application_reference_id,
         ]);
-        error_log(print_r('### REFUND ###', true));
-        error_log(print_r($amount, true));
-        error_log(print_r($reason, true));
+        //error_log(print_r('### REFUND ###', true));
+        //error_log(print_r($amount, true));
+        //error_log(print_r($reason, true));
 
         $payload = [
             'refund' => [
