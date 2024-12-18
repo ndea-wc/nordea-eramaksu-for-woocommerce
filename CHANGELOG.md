@@ -17,3 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added separate configuration file for plugin defaults
 ### Fixed
 - Fixed reading plugin settings from options
+
+## [0.9.4] - 2024-12-18
+### Fixed
+- Fixed blocks payment method data

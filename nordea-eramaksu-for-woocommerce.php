@@ -5,7 +5,7 @@
  * Author: Capgemini
  * Author URI: https://www.capgemini.com
  * Description: Nordea Finance Erämaksu Payment Gateway.
- * Version: 0.9.3
+ * Version: 0.9.4
  * Requires at least: 6.0
  * Requires Plugins: woocommerce
  * Tested up to: 6.7
