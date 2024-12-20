@@ -5,7 +5,7 @@
  * Author: Capgemini
  * Author URI: https://www.capgemini.com
  * Description: Nordea Finance Erämaksu Payment Gateway.
- * Version: 0.9.4
+ * Version: 1.0.0
  * Requires at least: 6.0
  * Requires Plugins: woocommerce
  * Tested up to: 6.7
@@ -155,7 +155,7 @@ function nordea_checkout_script() {
 
                     var cartTotal = getCartTotal();
                     console.log('Checking cart total:', cartTotal);
-                    
+
                     var nordeaRadioButtonBlock = $('input[name="radio-control-wc-payment-method-options"][value="nordea-eramaksu"]');
                     var nordeaBlockContainer = nordeaRadioButtonBlock.closest('.wc-block-components-radio-control-accordion-option');
 

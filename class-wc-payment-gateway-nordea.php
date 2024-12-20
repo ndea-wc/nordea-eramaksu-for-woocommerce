@@ -265,7 +265,7 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
         
         //$this->logger->debug('Order ' . $order_id . ': Nordea application creation payload prepared.', ['source' => 'plugin-nordea-eramaksu', 'json' => $payload]);
         // Send urls in email to customer for testing only
-        $this->nordea_test_send_pending_order_email($order); 
+        //$this->nordea_test_send_pending_order_email($order); 
 
         // Send API request
         $response = wp_remote_post($api_url, [
@@ -582,12 +582,12 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
                 'X-IBM-Client-Secret' => $this->client_secret,
             ],
         ]);
-        $this->logger->debug("Nordea API PATCH request payload prepared: ", ['source' => 'plugin-nordea-eramaksu', 'json' => $payload]);
+        //$this->logger->debug("Nordea API PATCH request payload prepared: ", ['source' => 'plugin-nordea-eramaksu', 'json' => $payload]);
 
         $status_code = wp_remote_retrieve_response_code($response);
         $response_body = wp_remote_retrieve_body($response);
         $response_data = json_decode($response_body, true);
-        $this->logger->debug("Nordea API PATCH request response status: $status_code, response: ", ['source' => 'plugin-nordea-eramaksu', 'response' => $response_data]);
+        //$this->logger->debug("Nordea API PATCH request response status: $status_code, response: ", ['source' => 'plugin-nordea-eramaksu', 'response' => $response_data]);
 
         if ($status_code == 200) {
             return [
@@ -707,12 +707,13 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
     }
 
     // TBD this function might be obsolete
-    public function action_woocommerce_order_refunded( $order_id, $refund_id ) 
-    { 
+    //public function action_woocommerce_order_refunded( $order_id, $refund_id ) 
+    //{ 
     // Code
-    }
+    //}
 
     // For testing without Nordea portal
+    /*
     function nordea_test_content_specific_email( $order, $sent_to_admin, $plain_text, $email )  { 
         if ( $email->id == 'customer_invoice' && 'nordea-eramaksu' == $order->get_payment_method()) {
             echo '<p>cancel_url => '. add_query_arg('status', 'cancel', wc_get_checkout_url()).'</p>';
@@ -725,6 +726,7 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
         add_action('woocommerce_email_before_order_table', [$this, 'nordea_test_content_specific_email'], 10, 4);
         WC()->mailer()->customer_invoice( $order );
     }
+        */
 
 }
 ?>

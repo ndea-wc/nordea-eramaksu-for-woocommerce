@@ -21,3 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.9.4] - 2024-12-18
 ### Fixed
 - Fixed blocks payment method data
+
+## [1.0.0] - 2024-12-20
+### Fixed
+- Removed sending test email with callbacks. First release for actual production use.
