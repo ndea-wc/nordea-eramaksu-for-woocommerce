@@ -200,7 +200,7 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
         // Retrieve order ID for logging    
         $order_id = $order->get_id(); 
         // API URL
-        $api_url = str_replace('{dealer_id}', $this->dealer_id, 'https://api.nordeaopenbanking.com/retail-finance/purchase-finance/v1/{dealer_id}/application');
+        $api_url = str_replace('{dealer_id}', $this->dealer_id, 'https://open.nordea.com/retail-finance/purchase-finance/v1/{dealer_id}/application');
         $purchase_items = []; // Initialize the items array
         // Loop through the order items and populate the purchase_items array
         foreach ($order->get_items() as $item_id => $item) {
@@ -460,7 +460,7 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
     private function verify_payment_with_nordea($application_reference_id) {
 
         // Assuming the endpoint to verify payment status is like this:
-        $api_url =  str_replace('{dealer_id}', $this->dealer_id, 'https://api.nordeaopenbanking.com/retail-finance/purchase-finance/v1/{dealer_id}/'). $application_reference_id;
+        $api_url =  str_replace('{dealer_id}', $this->dealer_id, 'https://open.nordea.com/retail-finance/purchase-finance/v1/{dealer_id}/'). $application_reference_id;
     
         // Make API request
         $response = wp_remote_get($api_url, [
@@ -571,7 +571,7 @@ final class WC_Gateway_Nordea_Eramaksu extends WC_Payment_Gateway {
 	 */
     private function send_patch_request_to_nordea($application_reference_id, $payload) {
         // API URL
-        $api_url = str_replace('{dealer_id}', $this->dealer_id, 'https://api.nordeaopenbanking.com/retail-finance/purchase-finance/v1/{dealer_id}/').$application_reference_id;
+        $api_url = str_replace('{dealer_id}', $this->dealer_id, 'https://open.nordea.com/retail-finance/purchase-finance/v1/{dealer_id}/').$application_reference_id;
         // Send API request
         $response = wp_remote_post($api_url, [
             'method' => 'PATCH',

@@ -10,5 +10,5 @@ define("CONTINUE_SHOPPING_TEXT", "Jatka ostoksia");
  * Define plugin API domain
 */
 define("NORDEA_FINANCE_API_TEST_DOMAIN", "api.nordeaopenbanking.com");
-define("NORDEA_FINANCE_API_PRODUCTION_DOMAIN", "purchasefinance.nordeaopenbanking.com");
+define("NORDEA_FINANCE_API_PRODUCTION_DOMAIN", "open.nordea.com");
 ?>
